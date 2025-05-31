@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
+        // Sem parâmetros - Posso chamar diretamente
         function Alert1() {
             function handleAlertClick(event) {
                 console.log(event);
@@ -24,18 +25,22 @@
             )
         }
 
+        // Com parâmetros - Necessita função intermediária
+        // Netse caso, caso eu queira usar o event, preciso passar como parâmetro
         function Alert2() {
-            function handleAlertClick(msg) {
+            function handleAlertClick(event, msg) {
+                console.log(event);
                 alert(msg)
             }
 
             return (
-                <button onClick={() => handleAlertClick('Uma mensagem via param!')}>
+                <button onClick={(event) => handleAlertClick(event, 'Uma mensagem via param!')}>
                     Mostrar Alerta c/ Parâmetro
                 </button>
             )
         }
 
+        // Utilizando parâmetro “event” do DOM
         function Alert3() {
             function handleAlertClick(event) {
                 alert(event.target.previousSibling.value)
